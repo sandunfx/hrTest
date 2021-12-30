@@ -4,7 +4,7 @@ const port = process.env.PORT || 3000;
 
 const { Client } = require("pg");
 
-var connectionString = "process.env.DATABASE_URL";
+var connectionString = process.env.DATABASE_URL;
 
 app.get("/", (req, res) => {
   pg.connect(connectionString, function (err, client, done) {
