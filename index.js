@@ -6,10 +6,6 @@ const { Client } = require("pg");
 
 var connectionString = process.env.DATABASE_URL;
 
-app.get("/", (req, res) => {
-  res.send(connectionString);
-});
-
 app.get("/testl", (req, res) => {
   pg.connect(connectionString, function (err, client, done) {
     client.query("select * from emp", function (err, result) {
@@ -20,6 +16,12 @@ app.get("/testl", (req, res) => {
     });
   });
 });
+
+app.get("/", (req, res) => {
+  res.send(connectionString);
+});
+
+
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
