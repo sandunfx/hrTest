@@ -7,6 +7,10 @@ const { Client } = require("pg");
 var connectionString = process.env.DATABASE_URL;
 
 app.get("/", (req, res) => {
+  res.send(connectionString);
+});
+
+app.get("/testl", (req, res) => {
   pg.connect(connectionString, function (err, client, done) {
     client.query("select * from emp", function (err, result) {
       done();
