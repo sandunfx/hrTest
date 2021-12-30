@@ -14,11 +14,7 @@ app.get("/", (req, res) => {
   const client = new Client({
     connectionString,
   });
-  client.connect();
-  client.query("SELECT NOW()", (err, res) => {
-    console.log(err, res);
-    client.end();
-  });
+ 
 });
 
 app.listen(port, () => {
