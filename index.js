@@ -10,7 +10,7 @@ app.get("/", (req, res) => {
   pg.connect(connectionString, function (err, client, done) {
     client.query("select * from emp", function (err, result) {
       done();
-      if (err) return console.error(err);
+      if (err) return  res.send(err);
       console.log(result.rows);
       res.send(result.rows);
     });
