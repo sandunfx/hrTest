@@ -11,10 +11,8 @@ app.get("/test", (req, res) => {
 });
 
 app.get("/", (req, res) => {
-  const client = new Client({
-    connectionString,
-  });
- 
+  res.send("111");
+
 });
 
 app.listen(port, () => {
