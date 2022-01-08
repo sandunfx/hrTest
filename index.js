@@ -44,6 +44,9 @@ app.get("/test", (req, res) => {
   
     const clientResult = await clientDemo();
     console.log("Time with client: " + clientResult.rows[0]["now"]);
+    
+    res.send("Time with client: " + clientResult.rows[0]["now"]);
+
   })();
 });
 
