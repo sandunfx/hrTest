@@ -18,10 +18,10 @@ app.get("/test", (req, res) => {
 
   client.query('SELECT NOW()', (err, res) => {
     console.log(err, res)
+    res.send(res);
     client.end()
   })
 
-  res.send(connectionString);
 });
 
 app.get("/", (req, res) => {
