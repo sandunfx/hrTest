@@ -22,7 +22,7 @@ app.get("/test2", (req, res) => {
         // for (let row of res.rows) {
         //   console.log(JSON.stringify(row));
         // }
-        res.send(res.rows);
+        res.send(res1.rows);
 
         client.end();
       }
