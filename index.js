@@ -17,7 +17,7 @@ app.get("/test2", (req, res) => {
     client.connect();
 
     client.query(
-      "SELECT table_schema,table_name FROM information_schema.tables;",
+      "select * from emp;",
       (err1, res1) => {
         // for (let row of res.rows) {
         //   console.log(JSON.stringify(row));
