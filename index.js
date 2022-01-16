@@ -13,7 +13,8 @@ const credentials = {
   host: "ec2-34-236-87-247.compute-1.amazonaws.com",
   database: "da5f8s6lmtjrf6",
   password: "3f19cecebf4ade2f461e6ee80553353713f31f6c07f775c05e94681391dff597",
-  port: 5432
+  port: 5432,
+  ssl: true
 };
 
 // const credentials = {
