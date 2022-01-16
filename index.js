@@ -18,11 +18,11 @@ app.get("/test2", (req, res) => {
 
     client.query(
       "SELECT table_schema,table_name FROM information_schema.tables;",
-      (err, res) => {
-        for (let row of res.rows) {
-          console.log(JSON.stringify(row));
-        }
-        res.send(res);
+      (err1, res1) => {
+        // for (let row of res.rows) {
+        //   console.log(JSON.stringify(row));
+        // }
+        res.send(res1);
 
         client.end();
       }
