@@ -61,22 +61,26 @@ app.get("/test", (req, res) => {
 });
 
 app.get("/test2", (req, res) => {
-  const client2 = new Client({
-    connectionString: process.env.DATABASE_URL,
-    ssl: {
-      rejectUnauthorized: false,
-    },
-  });
+  try {
+    const client2 = new Client({
+      connectionString: process.env.DATABASE_URL,
+      ssl: {
+        rejectUnauthorized: false,
+      },
+    });
 
-  client2.connect();
+    client2.connect();
 
-  client2.query(
-    "SELECT table_schema,table_name FROM information_schema.tables;",
-    (err, res) => {
-      res.send(res);
-      client2.end();
-    }
-  );
+    client2.query(
+      "SELECT table_schema,table_name FROM information_schema.tables;",
+      (err, res) => {
+        res.send(res);
+        client2.end();
+      }
+    );
+  } catch (err) {
+    res.send(err.message);
+  }
 });
 
 app.get("/", (req, res) => {
