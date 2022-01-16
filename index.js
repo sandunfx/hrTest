@@ -14,7 +14,7 @@ const credentials = {
   database: "da5f8s6lmtjrf6",
   password: "3f19cecebf4ade2f461e6ee80553353713f31f6c07f775c05e94681391dff597",
   port: 5432,
-  ssl: true
+  ssl: true,
 };
 
 // const credentials = {
@@ -49,17 +49,34 @@ async function clientDemo() {
 
 app.get("/test", (req, res) => {
   (async () => {
-  
     try {
       const clientResult = await clientDemo();
       console.log("Time with client: " + clientResult.rows[0]["now"]);
-      
+
       res.send(clientResult.rows[0]["now"]);
     } catch (err) {
       res.send(err.message);
     }
-
   })();
+});
+
+app.get("/test2", (req, res) => {
+  const client2 = new Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+      rejectUnauthorized: false,
+    },
+  });
+
+  client2.connect();
+
+  client2.query(
+    "SELECT table_schema,table_name FROM information_schema.tables;",
+    (err, res) => {
+      console.log(err, res);
+      client2.end();
+    }
+  );
 });
 
 app.get("/", (req, res) => {
