@@ -2,16 +2,17 @@ const express = require("express");
 const app = express();
 const port = process.env.PORT || 3000;
 
+const { Client } = require("pg");
+
+const client = new Client({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false,
+  },
+});
+
 app.get("/test2", (req, res) => {
   try {
-    const { Client } = require("pg");
-
-    const client = new Client({
-      connectionString: process.env.DATABASE_URL,
-      ssl: {
-        rejectUnauthorized: false,
-      },
-    });
 
     client.connect();
 
