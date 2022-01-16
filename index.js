@@ -73,7 +73,7 @@ app.get("/test2", (req, res) => {
   client2.query(
     "SELECT table_schema,table_name FROM information_schema.tables;",
     (err, res) => {
-      console.log(err, res);
+      res.send(res);
       client2.end();
     }
   );
