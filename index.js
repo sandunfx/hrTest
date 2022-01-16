@@ -16,6 +16,14 @@ const credentials = {
   port: 5432
 };
 
+// const credentials = {
+//   user: "postgres",
+//   host: "localhost",
+//   database: "testDb",
+//   password: "c3@admin",
+//   port: 5432
+// };
+
 // Connect with a connection pool.
 
 async function poolDemo() {
@@ -31,7 +39,8 @@ async function poolDemo() {
 async function clientDemo() {
   const client = new Client(credentials);
   await client.connect();
-  const now = await client.query("SELECT NOW()");
+  // const now = await client.query("SELECT NOW()");
+  const now = await client.query("select * from emp");
   await client.end();
 
   return now;
@@ -39,13 +48,15 @@ async function clientDemo() {
 
 app.get("/test", (req, res) => {
   (async () => {
-    const poolResult = await poolDemo();
-    console.log("Time with pool: " + poolResult.rows[0]["now"]);
   
-    const clientResult = await clientDemo();
-    console.log("Time with client: " + clientResult.rows[0]["now"]);
-    
-    res.send("Time with client: " + clientResult.rows[0]["now"]);
+    try {
+      const clientResult = await clientDemo();
+      console.log("Time with client: " + clientResult.rows[0]["now"]);
+      
+      res.send(clientResult.rows[0]["now"]);
+    } catch (err) {
+      res.send(err.message);
+    }
 
   })();
 });
